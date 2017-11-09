@@ -11,9 +11,9 @@ contract ERC20 {
      event Approval(address indexed _owner, address indexed _spender, uint256 _value);
  }
   
-  contract LiziToken is ERC20 {
-     string public constant symbol = "LIZI";
-     string public constant name = "LIZI";
+  contract TzTToken is ERC20 {
+     string public constant symbol = "TZT";
+     string public constant name = "TZT";
      uint8 public constant decimals = 8;
      uint256 _totalSupply = 1000000000 * 10**8;
      
@@ -25,7 +25,7 @@ contract ERC20 {
      mapping(address => mapping (address => uint256)) allowed;
      
   
-     function LiziToken() {
+     function TzTToken() {
          owner = msg.sender;
          balances[owner] = 1000000000 * 10**8;
      }
@@ -38,9 +38,9 @@ contract ERC20 {
      
      function distributeToken(address[] addresses, uint256 _value) onlyOwner {
      for (uint i = 0; i < addresses.length; i++) {
-         balances[owner] -= _value;
-         balances[addresses[i]] += _value;
-         Transfer(owner, addresses[i], _value);
+         balances[owner] -= _value * 10**8;
+         balances[addresses[i]] += _value * 10**8;
+         Transfer(owner, addresses[i], _value * 10**8);
      }
 }
      
